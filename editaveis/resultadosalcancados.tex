@@ -1,0 +1,101 @@
+\chapter[Resultados Alcançados]{Resultados Alcançados}\label{cap6}
+
+
+O Editor de \textit{audiobooks} gera com sucesso um formato Ogg Vorbis com todos os metadados inseridos no pacote Vorbis de comentários e as marcações de conteúdo contidas no pacote LGMK construído. Mesmo com sua estrutura alterada, o formato *.ogg pode ser executado em players com suporte a arquivos como o \textit{sox} ou Rhythmbox.
+
+A efeito de comparação ao \cite{herbert}, também foi utilizado o Hino Nacional Brasileiro para simular um \textit{audiobook}. O arquivo orignal no formato WAV possui 3 minutos e 41 segundos de duração e ocupa 42,5 MB de espaço em memória. Este arquivo foi carregado pelo Editor e em seguida foram inseridos os mesmos metadados inseridos por \cite{herbert} conforme mostra Tabela \ref{tab1}.
+
+\begin{table}[ht]
+\centering
+\caption{Metadados inseridos no \textit{comment header}.}
+\vspace{0.5cm}
+\begin{tabular}{ll}
+
+\hline
+\textbf{Nome} & \textbf{Valor} \\
+\hline
+Título & Hino Nacional Brasileiro \\
+Autor & Joaquim Osório \& Francisco Manuel \\
+Idioma & Português \\
+Editora & \\
+Local de Criação & Brasil \\
+Número de Páginas & 0 \\
+Ano de Criação & 1822 \\
+\hline
+
+\end{tabular}
+\label{tab1}
+\end{table}
+
+Para verificarmos os metadados inseridos no pacote de comentários do formato Ogg, a Figura \ref{meta}
+
+ \begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/hnbogg.eps}
+	\caption{Utilização do oggz-dump no formato Ogg Vorbis - pacote de comentários.}
+	\label{meta}
+\end{figure}
+
+O pacote de comentários é o pacote número 1 e pode-se perceber que os metadados foram inseridos corretamente. Relacinado as marcações de conteúdo,  a Tabela \ref{mark} mostram as informações que serão inseridas no pacote LGMK. As marcações também foram as mesmas utilizadas por \cite{herbert}.
+
+\begin{table}[ht]
+\centering
+\caption{Marcações inseridas no \textit{LGMK header}.}
+\vspace{0.5cm}
+%\rowcolor{1}{}{lightgray}
+\begin{tabular}{ll}
+
+\hline
+\textbf{Nome da Marcação} & \textbf{Tempo(s)} \\
+\hline
+Parte 1 & 0 \\
+Parte 2 & 103 \\
+Introdução 1 & 0 \\
+Primeira Estrofe & 28 \\
+Segunda Estrofe & 44 \\
+Terceira Estrofe & 60 \\
+Quarta Estrofe & 64 \\
+Quinta Estrofe & 79 \\
+Sexta Estrofe & 91 \\
+Introdução 2 & 103 \\
+Sétima Estrofe & 132 \\
+Oitava Estrofe & 148 \\
+Nona Estrofe & 164 \\
+Décima Estrofe & 168 \\
+Décima Primeira Estrofe & 183 \\
+Décima Segunda Estrofe & 195 \\
+Décima Terceira Estrofe & 201 \\
+Final & 206 \\
+\hline
+
+\end{tabular}
+\label{mark}
+\end{table}
+
+O verificação da inserção dos marcadores de conteúdo no pacote LGMK pode ser visualizado usando a ferramenta oggz-dump. A Figura \ref{lgmk} mostra o pacote LGMK que pode ser identificado pelo número de pacote 3 e os marcadores de conteúdo contidos dentro dele.
+
+ \begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/hnblgmkogg.eps}
+	\caption{Utilização do oggz-dump no formato Ogg Vorbis - pacote LGMK.}
+	\label{lgmk}
+\end{figure}
+
+O pacote Ogg Vorbis gerado possui apenas 1,84MB e não mais 42,5MB como o arquivo original. Houve uma redução considerável devido ao algoritmo de compressão do \textit{codec} Vorbis. O arquivo gerado é executado corretamente do início ao fim sem interrupções. Também foi feito um teste para verificar se o pacote LGMK não iria corromper o arquivo Ogg Voribs inserido 22 milhões de marcações. O arquivo final ficou com 340MB de tamanho, no entanto, o player conseguiu executá-lo normalmente.
+
+
+%O Editor também é capaz de decodificar todos os dados conforme mostra a Figura \ref{decodeog%g}%
+%
+% \begin{figure}[ht]
+%	\centering
+%		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/decodeogg.eps}
+%	\caption{Utilização do Editor para decodificar os dados.}
+%	\label{decodeogg}
+%\end{figure}
+
+
+
+
+%1,86MB
+
+ Ao utilizarmos a ferramenta oggz-dump podemos visualizar o pacote LGMK inserido
