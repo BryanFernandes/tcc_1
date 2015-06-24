@@ -1,19 +1,51 @@
 \chapter[Introdução]{Introdução}\label{cap1}
 
-Os \textit{audiobooks} tem crescido no mercado e cada vez mais sendo usado pelas pessoas ao redor do mundo. Eles são amplamente difundidos pela internet e em sua maioria no formato MP3. Este formato tem sido difundido por armazenar áudio de alta qualidade e ocupar pouco espaço em memória devido ao uso de uma técnica de compressão de dados. Entretanto, com desvantagem, quaisquer marcações são ligadas diretamente ao tocador e não ao arquivo. Outro ponto é que não existem formatos \textit{open source} que ofereçam suporte para marcação de conteúdo e os que possuem são protegidos por leis de propriedade intelectual. Estas marcações são marcadores de posição que representam a estrutura lógica de um livro físico o que vem a ser capítulos, seções, parágrafos, versículos, entre outros. Estas são as informações levantadas por \cite{herbert} e a motivação de seu trabalho foi desenvolver uma especificação de um formato aberto para \textit{audiobooks} com suporte a marcadores de conteúdo pois não existe um formato de arquivo livre e de código aberto que tenha suporte a estes marcadores. Os objetivos foram alcançados mas melhorias foram sugeridas pois os arquivos gerados ocupavam muito espaço em memória.
+Os dispositivos eletrônicos estão tomando cada vez mais espaço na vida das pessoas e isto tem provocado um afastamento destas pessoas e instituições de impressões e uma consequente aproximação de livros eletrônicos. Os \textit{e-books}, nome dado aos livros eletrônicos, estão fazendo sucesso e sendo cada vez mais utilizados pelos editores para tornar disponíveis livros em formato eletrônico. Se comparado aos livros impressos, os \textit{e-books} oferecem diversos benefícios aos leitores, incluindo portabilidade, redução de danos ao meio ambiente e menor peso.
 
-Este trabalho visa reproduzir o trabalho feito por \cite{herbert} mas em um outro formato de arquivo que faz compressão de dados ao ponto de gerar arquivos menores viabilizando a proposta incialmente sugerida. Portanto, neste trabalho foi desenvolvida a especificação de um formato aberto para \textit{audiobooks} com suporte a marcadores de conteúdo e que faz uso da técnica de compressão de dados para o armazenamento dos dados.
+Para alguns leitores, estes livros eletrônicos oferecem algo ainda mais importante: a sua primeira oportunidade de desfrutar da leitura. Seja um cidadão cego ou com baixa visão,  seja  uma pessoas com dislexia ou outras dificuldades de aprendizagem, seja uma criança que não consegue segurar ou mudar a página de um livro, todos eles encontram enormes dificuldades para ler livros impressos. Dependendo do caso, mesmo com o \textit{e-book} a leitura ainda é impossível.
 
-O trabalho está organizado em capítulos. No próximo capítulo, é apresentado os objetivos pretendidos para o qual este trabalho foi motivado.
+Algumas das limitações citadas aparentemente não poderiam ser solucionadas através da produção dos livros eletrônicos. No entanto, os \textit{e-books} tem potencial para alcançar cerca de 30 milhões de pessoas com deficiência, pois embora sejam interpretados por um computador na maioria dos casos, eles não estão restritos a ele, e tão pouco estão limitados ao formato de texto. Ou seja, os \textit{e-books} podem ser processados em texto eletrônico, Braille, hieróglifos, bem como na própria impressão em papel. Não somente a isso, os \textit{e-books} também podem ser apresentados em formato acústico, recebendo o nome de \textit{audiobooks} \cite{herbert}.
 
-No capítulo \ref{cap3}, é apresentada toda a revisão bibliográfica onde foram revistos monografias, dissertações, livros, publicações em \textit{websites} e especificações necessários para o entendimento e desenvolvimento do projeto.
+Os audiobooks tem crescido no mercado e vêm sendo usado pelas pessoas ao redor do mundo. Eles são amplamente difundidos pela internet, e em sua maioria no formato MP3. Este formato tem sido difundido por armazenar áudio de alta qualidade e ocupar pouco espaço em memória, devido ao uso de uma técnica de compressão de dados. Entretanto, com desvantagem, quaisquer tipos de anotações e marcações a serem acrescidas ao audiobook neste formato são ligadas diretamente ao tocador e não ao arquivo. 
 
-No capítulo \ref{cap4}, será restringida a proposta do trabalho.
+Outro ponto importante é que não existem formatos \textit{open source} que ofereçam suporte para  anotações e marcações lógicas que permitam navegar pela estrutura do conteúdo do livro (por exemplo, saltar entre capítulos, parágrafos, etc), e os que possuem são protegidos por leis de propriedade intelectual. Estas marcações, chamadas neste trabalho de marcações de conteúdo, são marcadores de posição que representam a estrutura lógica de um livro físico, isto é, capítulos, seções, parágrafos, versículos, entre outros \cite{herbert}. Reis apontou que a motivação de seu trabalho foi desenvolver uma especificação de um formato aberto para \textit{audiobooks} com suporte a marcadores de conteúdo.
 
-No capítulo \ref{cap5}, serão apresentados todas as etapas realizadas para a especificação do formato e para o desenvolvimento do Editor bem como as ferramentas utilizadas com suporte no processo de desenvolvimento e pesquisa.
+Este trabalho visa evoluir a especificação do formato proposto por Reis de modo a obter um formato de arquivo para \textit{audiobooks} capaz de conter o áudio, os metadados e marcações de conteúdo referente ao áudio comprimido, bem como desenvolver um player capaz de executar tal formato de forma acessível, através da interação pelo teclado. O desenvolvimento do formato e da ferramenta tem como intuito investigar a seguinte hipótese de pesquisa: \textit{audiobooks} com navegação acessível por marcações de conteúdo podem contribuir com o ensino para pessoas não videntes que possuem limitações para ler livros didáticos?
 
-No capítulo \ref{cap6}, serão apresentados os resultados obtidos no projeto onde será mostrado o arquivo gerado pelo Editor.
+\section{Objetivos}
 
-E, por fim, no capítulo \ref{cap7}, será apresentado um cronograma onde estão definidas as atividades executadas durante o desenvolvimento deste trabalho.
+Nesta seção serão descritos os objetivos que se pretende alcançar com este trabalho e estão divididos em objetivo geral e objetivos específicos.
 
-%Este documento apresenta considerações gerais e preliminares relacionadas à redação de relatórios de Projeto de Graduação da Faculdade UnB Gama (FGA). São abordados os diferentes aspectos sobre a estrutura do trabalho, uso de programas de auxilio a edição, tiragem de cópias, encadernação, etc.
+\subsection{Objetivo Geral}
+
+Especificar um arquivo de audiobook com compressão que suporte a navegação e testar em campo a hipótese de que um audiobook com navegação por marcações de conteúdo podem ser utilizados como ferramenta didática para não videntes.
+
+\subsection{Objetivos Específico 1}
+
+Especificar um arquivo de áudio compactado. Alguns critérios devem ser contemplados, tais como fazer uso da compressão de dados, ser capaz de armazenar conteúdo para suporte a marcação do conteúdo do áudio, conter informações referente ao áudio armazenado e ser um formato open source.
+
+\subsection{Objetivos Específicos 2}
+
+Desenvolver um player para tal formato com recurso a acessibilidade para não videntes. Para tanto, o player deve ser capaz de decodificar e executar o novo formato especificado sem interrupção ou perda de informação trabalhando com todas as informações contidas no formato. Pular para pontos específicos do áudio também é um requisito que o player deve possuir  com interação por meio do teclado para dar suporte a utilização da ferramenta aos não videntes.
+
+\subsection{Objetivos Específicos 3}
+
+Produção de material didático para não videntes utilizando o formato.
+
+\subsection{Objetivos Específicos 4}
+
+Aplicar material didático para não videntes em campo para coletar os dados referentes a experiência dos usuários com o formato especificado e a ferramenta proposta.
+
+\subsection{Objetivos Específicos 5}
+
+Analisar e interpretar os dados coletados com base na fundamentação teórica avaliando o resultado do uso da ferramenta pelos não videntes calculando o possível ganho para o ensino e aprendizados destas pessoas.
+
+\section{Motivação}
+
+\textbf{em construção!!!}
+
+\section{Organização do Trabalho}
+
+O trabalho está organizado em capítulos. No Capítulo \ref{cap2} é apresentada a revisão bibliográfica que forneceu o embasamento teórico para o entendimento e desenvolvimento do projeto. No Capítulo \ref{cap3} proposta do trabalho é restrita e delimitada.
+
+No Capítulo \ref{cap4} são apresentadas todas as etapas realizadas para a especificação e evolução do formato, e para o desenvolvimento do Editor, bem como as ferramentas utilizadas no processo de desenvolvimento e pesquisa.  No Capítulo \ref{cap5} são apresentados os resultados parciais obtidos até o momento e, por fim, no Capítulo \ref{cap6}, será apresentado um cronograma onde estão definidas as atividades que foram e serão executadas durante o desenvolvimento deste trabalho.
