@@ -1,9 +1,9 @@
-\chapter[Resultados Alcançados]{Resultados Alcançados}\label{cap5}
+\chapter[Resultados Alcançados]{Resultados Alcançados}\label{cap4}
 
 
 O Editor de \textit{audiobooks} gera com sucesso um formato Ogg Vorbis com todos os metadados inseridos no pacote Vorbis de comentários e as marcações de conteúdo contidas no pacote LGMK construído. Mesmo com sua estrutura alterada, o formato *.ogg pode ser executado em players com suporte a arquivos como o \textit{sox} ou Rhythmbox.
 
-A efeito de comparação ao \cite{herbert}, também foi utilizado o Hino Nacional Brasileiro para simular um \textit{audiobook}. O arquivo orignal no formato WAV possui 3 minutos e 41 segundos de duração e ocupa 42,5 MB de espaço em memória. Este arquivo foi carregado pelo Editor e em seguida foram inseridos os mesmos metadados inseridos por \cite{herbert} conforme mostra Tabela \ref{tab1}.
+A efeito de comparação ao \cite{herbert}, cujo trabalho desenvolveu um formato parecido que não faz uso da compressão de dados, também foi utilizado o Hino Nacional Brasileiro para simular um \textit{audiobook}. O arquivo original no formato WAV possui 3 minutos e 41 segundos de duração e ocupa 42,5 MB de espaço em memória. Este arquivo foi carregado pelo Editor e em seguida foram inseridos os mesmos metadados inseridos por \cite{herbert} conforme mostra Tabela \ref{tab1}.
 
 \begin{table}[ht]
 \centering
@@ -32,7 +32,7 @@ Para verificarmos os metadados inseridos no pacote de comentários do formato Og
  \begin{figure}[ht]
 	\centering
 		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/hnbogg.eps}
-	\caption{Utilização do oggz-dump no formato Ogg Vorbis - pacote de comentários.}
+	\caption{Utilização do oggz-dump - pacote de comentários.}
 	\label{meta}
 \end{figure}
 
@@ -77,7 +77,7 @@ O verificação da inserção dos marcadores de conteúdo no pacote LGMK pode se
  \begin{figure}[ht]
 	\centering
 		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/hnblgmkogg.eps}
-	\caption{Utilização do oggz-dump no formato Ogg Vorbis - pacote LGMK.}
+	\caption{Utilização do oggz-dump - pacote LGMK.}
 	\label{lgmk}
 \end{figure}
 
@@ -98,4 +98,23 @@ O pacote Ogg Vorbis gerado possui apenas 1,84MB e não mais 42,5MB como o arquiv
 
 %1,86MB
 
- Ao utilizarmos a ferramenta oggz-dump podemos visualizar o pacote LGMK inserido
+O Player desenvolvido é capaz de executar o novo formato gerado pelo Editor, e através das marcações contidas no formato, navegar pelo conteúdo do áudio facilmente. O uso Player não se dá apenas pela interface gráfica através do uso do mouse, pleo teclado também somos capazes de utilizar o player por meio das funções básicas de play/pause e de navegação utilizando as teclas direcionais. O Player está representado na Figura \ref{player}:
+
+ \begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/player.eps}
+	\caption{Execução de um arquivo de teste gerado pelo Editor.}
+	\label{player}
+\end{figure}
+
+O Player carrega os metadados referente ao arquivo informando ao usuário sobre qual arquivo está sendo executado bem como a visualização da posição em que o player se encontra no áudio gravado. Os comandos pelo teclado estão descritos abaixo:
+
+\begin{itemize}
+	\item{\textbf{Play/Pause}:} o comando pode ser executado alternativamente pela tecla de espaço;
+	\item{\textbf{Pular uma marcação a frente}:} esta funcionalidade do player pode ser acionada através da tecla de seta para a direita;
+	\item{\textbf{Voltar uma marcação}:} esta funcionalidade do player pode ser acionada através da tecla de seta para a esquerda;
+	\item{\textbf{Subir a marcação para o nível 1}:} o comando pode ser acionado quando pressionada a tecla de seta para cima. Esta funcionalidade foi pensada com o intuito de contemplar a referência de capítulos contidas nos livros impressos;
+	\item{\textbf{Descer a marcação para o nível 2}:} esta funcionalidade do player pode ser acionada através da tecla de seta para a baixo. Esta funcionalidade do player visa contemplar a referência para os subcapítulos como encontrado nos livros impressos, tornando a busca de informação ainda mais otimizada.
+\end{itemize}
+
+O Player foi testados nos sistemas operacionais Ubuntu e Mac OS X. Nos dois ambientes o player não apresentou nenhum erro durante a sua execução. Vale ressaltar que o Editor também é funcional netes dois sistemas operacionais.

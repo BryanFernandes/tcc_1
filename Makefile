@@ -18,7 +18,7 @@ EDITAVEIS_DIR = editaveis
 EDITAVEIS_SOURCES = informacoes.tex errata.tex dedicatoria.tex \
 					agradecimentos.tex epigrafe.tex resumo.tex abstract.tex \
 					abreviaturas.tex simbolos.tex introducao.tex \
-					fundamentacaoteorica.tex delimitacaodoassunto.tex metodologia.tex \
+					fundamentacaoteorica.tex metodologia.tex \
 					resultadosalcancados.tex cronogramadedesenvolvimento.tex \
 					apendices.tex anexos.tex
 

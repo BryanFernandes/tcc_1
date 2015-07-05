@@ -1,51 +1,46 @@
 \chapter[Introdução]{Introdução}\label{cap1}
 
-Os dispositivos eletrônicos estão tomando cada vez mais espaço na vida das pessoas e isto tem provocado um afastamento destas pessoas e instituições de impressões e uma consequente aproximação de livros eletrônicos. Os \textit{e-books}, nome dado aos livros eletrônicos, estão fazendo sucesso e sendo cada vez mais utilizados pelos editores para tornar disponíveis livros em formato eletrônico. Se comparado aos livros impressos, os \textit{e-books} oferecem diversos benefícios aos leitores, incluindo portabilidade, redução de danos ao meio ambiente e menor peso.
+Os dispositivos eletrônicos estão tomando cada vez mais espaço na vida das pessoas e isto tem provocado um afastamento destas pessoas e instituições de impressões e uma consequente aproximação de livros eletrônicos. Os \textit{e-books}, nome dado aos livros eletrônicos, estão fazendo sucesso e sendo cada vez mais utilizados pelos editores para tornar disponíveis livros em formato eletrônico. Se comparado aos livros impressos, os \textit{e-books} oferecem diversos benefícios aos leitores, incluindo portabilidade, redução de danos ao meio ambiente e menor peso \cite{printdisable}.
 
-Para alguns leitores, estes livros eletrônicos oferecem algo ainda mais importante: a sua primeira oportunidade de desfrutar da leitura. Seja um cidadão cego ou com baixa visão,  seja  uma pessoas com dislexia ou outras dificuldades de aprendizagem, seja uma criança que não consegue segurar ou mudar a página de um livro, todos eles encontram enormes dificuldades para ler livros impressos. Dependendo do caso, mesmo com o \textit{e-book} a leitura ainda é impossível.
+Para alguns leitores, estes livros eletrônicos oferecem algo ainda mais importante: a sua primeira oportunidade de desfrutar da leitura. Seja um cidadão cego ou com baixa visão, seja uma pessoa com dislexia ou outras dificuldades de aprendizagem, seja uma criança que não consegue segurar ou mudar a página de um livro, todos eles encontram enormes dificuldades para ler livros impressos. Dependendo do caso, mesmo com o \textit{e-book} a leitura ainda é impossível \cite{ebooks}.
 
-Algumas das limitações citadas aparentemente não poderiam ser solucionadas através da produção dos livros eletrônicos. No entanto, os \textit{e-books} tem potencial para alcançar cerca de 30 milhões de pessoas com deficiência, pois embora sejam interpretados por um computador na maioria dos casos, eles não estão restritos a ele, e tão pouco estão limitados ao formato de texto. Ou seja, os \textit{e-books} podem ser processados em texto eletrônico, Braille, hieróglifos, bem como na própria impressão em papel. Não somente a isso, os \textit{e-books} também podem ser apresentados em formato acústico, recebendo o nome de \textit{audiobooks} \cite{herbert}.
+Algumas das limitações citadas aparentemente não poderiam ser solucionadas através da produção dos livros eletrônicos. No entanto, os \textit{e-books} tem potencial para alcançar cerca de 30 milhões de pessoas com deficiência, pois embora sejam interpretados por um computador na maioria dos casos, eles não estão restritos a ele, e tão pouco estão limitados ao formato de texto. Ou seja, os \textit{e-books} podem ser processados em texto eletrônico, Braille, hieróglifos, bem como na própria impressão em papel. Não somente a isso, os \textit{e-books} também podem ser apresentados em formato acústico, recebendo o nome de \textit{audiobooks} \cite{ebooks}.
 
-Os audiobooks tem crescido no mercado e vêm sendo usado pelas pessoas ao redor do mundo. Eles são amplamente difundidos pela internet, e em sua maioria no formato MP3. Este formato tem sido difundido por armazenar áudio de alta qualidade e ocupar pouco espaço em memória, devido ao uso de uma técnica de compressão de dados. Entretanto, com desvantagem, quaisquer tipos de anotações e marcações a serem acrescidas ao audiobook neste formato são ligadas diretamente ao tocador e não ao arquivo. 
+Os audiobooks tem crescido no mercado e vêm sendo usado pelas pessoas ao redor do mundo. Eles são amplamente difundidos pela internet, e em sua maioria no formato MP3. Este formato tem sido difundido por armazenar áudio de alta qualidade e ocupar pouco espaço em memória, devido ao uso de uma técnica de compressão de dados. Entretanto, com desvantagem, quaisquer tipos de anotações e marcações a serem acrescidas ao audiobook neste formato são ligadas diretamente ao tocador e não ao arquivo.
 
 Outro ponto importante é que não existem formatos \textit{open source} que ofereçam suporte para  anotações e marcações lógicas que permitam navegar pela estrutura do conteúdo do livro (por exemplo, saltar entre capítulos, parágrafos, etc), e os que possuem são protegidos por leis de propriedade intelectual. Estas marcações, chamadas neste trabalho de marcações de conteúdo, são marcadores de posição que representam a estrutura lógica de um livro físico, isto é, capítulos, seções, parágrafos, versículos, entre outros \cite{herbert}. Reis apontou que a motivação de seu trabalho foi desenvolver uma especificação de um formato aberto para \textit{audiobooks} com suporte a marcadores de conteúdo.
 
 Este trabalho visa evoluir a especificação do formato proposto por Reis de modo a obter um formato de arquivo para \textit{audiobooks} capaz de conter o áudio, os metadados e marcações de conteúdo referente ao áudio comprimido, bem como desenvolver um player capaz de executar tal formato de forma acessível, através da interação pelo teclado. O desenvolvimento do formato e da ferramenta tem como intuito investigar a seguinte hipótese de pesquisa: \textit{audiobooks} com navegação acessível por marcações de conteúdo podem contribuir com o ensino para pessoas não videntes que possuem limitações para ler livros didáticos?
 
+
 \section{Objetivos}
 
 Nesta seção serão descritos os objetivos que se pretende alcançar com este trabalho e estão divididos em objetivo geral e objetivos específicos.
 
-\subsection{Objetivo Geral}
-
-Especificar um arquivo de audiobook com compressão que suporte a navegação e testar em campo a hipótese de que um audiobook com navegação por marcações de conteúdo podem ser utilizados como ferramenta didática para não videntes.
-
-\subsection{Objetivos Específico 1}
-
-Especificar um arquivo de áudio compactado. Alguns critérios devem ser contemplados, tais como fazer uso da compressão de dados, ser capaz de armazenar conteúdo para suporte a marcação do conteúdo do áudio, conter informações referente ao áudio armazenado e ser um formato open source.
-
-\subsection{Objetivos Específicos 2}
-
-Desenvolver um player para tal formato com recurso a acessibilidade para não videntes. Para tanto, o player deve ser capaz de decodificar e executar o novo formato especificado sem interrupção ou perda de informação trabalhando com todas as informações contidas no formato. Pular para pontos específicos do áudio também é um requisito que o player deve possuir  com interação por meio do teclado para dar suporte a utilização da ferramenta aos não videntes.
-
-\subsection{Objetivos Específicos 3}
-
-Produção de material didático para não videntes utilizando o formato.
-
-\subsection{Objetivos Específicos 4}
-
-Aplicar material didático para não videntes em campo para coletar os dados referentes a experiência dos usuários com o formato especificado e a ferramenta proposta.
-
-\subsection{Objetivos Específicos 5}
-
-Analisar e interpretar os dados coletados com base na fundamentação teórica avaliando o resultado do uso da ferramenta pelos não videntes calculando o possível ganho para o ensino e aprendizados destas pessoas.
+\begin{description}
+	\item [Objetivo Geral:] especificar um arquivo de audiobook com compressão que suporte a navegação e testar em campo a hipótese de que um audiobook com navegação por marcações de conteúdo podem ser utilizados como ferramenta didática para não-videntes;
+	\item [Objetivos Específico 1:] especificar um arquivo de áudio compactado. Alguns critérios devem ser contemplados, tais como fazer uso da compressão de dados, ser capaz de armazenar conteúdo para suporte a marcação do conteúdo do áudio, conter informações referente ao áudio armazenado e ser um formato open source;
+	\item [Objetivos Específico 2:] Desenvolver um player para tal formato com recurso a acessibilidade para não videntes. Para tanto, o player deve ser capaz de decodificar e executar o novo formato especificado sem interrupção ou perda de informação trabalhando com todas as informações contidas no formato. Pular para pontos específicos do áudio também é um requisito que o player deve possuir  com interação por meio do teclado para dar suporte a utilização da ferramenta aos não videntes;
+	\item [Objetivos Específico 3:] produção de material didático para não videntes utilizando o formato;
+	\item [Objetivos Específico 4:] aplicar material didático para não videntes em campo para coletar os dados referentes a experiência dos usuários com o formato especificado e a ferramenta proposta; e
+	\item [Objetivos Específico 5:] analisar e interpretar os dados coletados com base na fundamentação teórica avaliando o resultado do uso da ferramenta pelos não videntes calculando o possível ganho para o ensino e aprendizados destas pessoas.
+\end{description}
 
 \section{Motivação}
 
-\textbf{em construção!!!}
+Apesar do avanço tecnológico e o surgimento e popularidade dos livros falados, ainda existem barreiras para se ter acesso a leitura. De um modo geral, isso não se dá ao fato da limitação da tecnologia, mas ao foco que as pessoas estão dando: elas querem tornar tudo mais fácil e prático para quem já faz uso, mas acabam esquecendo de tornar algo acessível para um grupo específico de pessoas que não teve ainda uma oportunidade de uso e costume de determinada prática que para outro já é simples e bem acessível. Viabilizar a acessibilidade focando na inclusão social de um grupo seleto de pessoas e dando a elas uma oportunidade de leitura é uma das principais motivações deste trabalho, maximizando o ensino e ajudando os não videntes a atingirem seu potencial e a fazerem a sua plena contribuição a sociedade.
+
+\section{Delimitação do Assunto}
+
+A gravação de um livro falado é, em suma, realizada no formato MP3 principalmente por ser um dos primeiros formatos por fazer uso da compressão sem perdas dados e por ser o formato mais disseminado nas redes e compartilhamento. No entanto, o formato MP3 é patenteado e não oferece suporte para os audiobooks. Devido a dificuldade ao acesso a informação que não se aplica apenas aos não-videntes, pois mesmo para as pessoas que não possuem nenhum tipo de limitação visual ou motora, navegar por horas contínuas de áudio em busca de informação é trabalhoso e em sua maioria impraticável. Um novo formato deve ser especificado e um player que suporte este formato deve ser também desenvolvido para que seja possível obter informações referentes a gravação e marcações de conteúdo que possiblite a navegação facilitando o acesso a informação.
+
+O novo formato foi derivado do formato Ogg Vorbis por possuir os requisitos básicos necessários para o desenvolvimento deste trabalho. O primeiro deles é que o Ogg Vorgis já oferece suporte a compressão de dados. Como o foco deste trabalho não é a compressão de dados, ela foi feita através de rotinas da libvorbis, pois é uma biblioteca open source, bem consolidada e testada. O formato também possui uma estrutura que facilita a inserção de novos pacotes de dados que não ocasionará na quebra de sua estrutura. Outro requisito é o livre acesso para o uso e desenvolvimento do formato, pois é open source. O player desenvolvido foi construído para suportar o formato especificado e promover um melhor uso pelos não-videntes, pois é o foco deste trabalho. Assim sendo, o player possui interação por teclado e suporte para navegação pelo conteúdo do arquivo.
+
+Para fins de coleta e análise de dados para o uso do formato especificado e do player desenvolvido no âmbito educacional, uma pesquisa de campo será realizada. Dadas as dificuldades e particularidades inerentes ao trato com os não-videntes, o grupo controle e o grupo experimental devem ter um número reduzido de participantes. Este número será definido a partir da disponibilidade e viabilidade da escola/ambiente onde o experimento será conduzido.
+
 
 \section{Organização do Trabalho}
 
-O trabalho está organizado em capítulos. No Capítulo \ref{cap2} é apresentada a revisão bibliográfica que forneceu o embasamento teórico para o entendimento e desenvolvimento do projeto. No Capítulo \ref{cap3} proposta do trabalho é restrita e delimitada.
+O trabalho está organizado em capítulos. No Capítulo \ref{cap2} é apresentada a revisão bibliográfica que forneceu o embasamento teórico para o entendimento e desenvolvimento do projeto.
 
-No Capítulo \ref{cap4} são apresentadas todas as etapas realizadas para a especificação e evolução do formato, e para o desenvolvimento do Editor, bem como as ferramentas utilizadas no processo de desenvolvimento e pesquisa.  No Capítulo \ref{cap5} são apresentados os resultados parciais obtidos até o momento e, por fim, no Capítulo \ref{cap6}, será apresentado um cronograma onde estão definidas as atividades que foram e serão executadas durante o desenvolvimento deste trabalho.
+No Capítulo \ref{cap3} são apresentadas todas as etapas realizadas para a especificação e evolução do formato, e para o desenvolvimento do Editor, bem como as ferramentas utilizadas no processo de desenvolvimento e pesquisa.  No Capítulo \ref{cap4} são apresentados os resultados parciais obtidos até o momento e, por fim, no Capítulo \ref{cap5}, será apresentado um cronograma onde estão definidas as atividades que foram e serão executadas durante o desenvolvimento deste trabalho.
