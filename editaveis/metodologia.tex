@@ -4,7 +4,7 @@
 
 A pesquisa bibliográfica foi feita, basicamente, por assunto, por autor e por título. A pesquisa realizada por assunto foi a mais utilizada e termos adequados foram usados para se obter um pesquisa mais efetiva para o entendimento e desenvolvimento do trabalho tais como \textit{audiobooks}, não-videntes, deficientes visuais, educação, ogg vorbis, livorbisfile, libvorbis, libvorbisenc, compressão de áudio, formatos de áudio, WAV, AIFF, MP3, PCM, entre outros. Também foram feitas pesquisas por assunto a respeito de ferramentas necessárias para o desenvolvimento do trabalho tais como fórmulas latext, player ogg, sox play, dump ogg, bibtex models example, Qt Creator e Qt Designer, entre outros. Para a pesquisa feita por autor e título é necessário que já se saiba qual autor ou obra são relevantes para o tema escolhido como, por exemplo, a pesquisa pelo autor Tanenbaum. Levantamento por assunto foi bastante utilizado em pesquisa na internet usando catálogos e mecanismos de busca em sites como o Google Acadêmico \cite{googleacademico}, Google com pesquisa \textit{web} e com filtro para livros, \textit{ACM Digital Library} \cite{acm} e Scielo \cite{scielo}. Ideias e dicas dadas pelo orientador prof. Dr. Edson Júnior deste trabalho foram de suma importância principalmente para uma determinação de ``um ponto de partida''.
 
-Através do levantamento bibliográfica foi possível listar e consolidar citações de trabalhos fundamentais para o tema ou algo similar ao que foi proposto neste trabalho. 
+Através do levantamento bibliográfica foi possível listar e consolidar citações de trabalhos fundamentais para o tema ou algo similar ao que foi proposto neste trabalho.
 
 \section{Ferramentas utilizadas}
 
@@ -20,11 +20,49 @@ Inicialmente foi utilizada a ferramenta hexdump nativa do sistema operacional Un
 
 A versão v.14.4.1 da ferramenta sox foi utilizada para executar os arquivos de áudio *.ogg com o intuito de verificar se o arquivo não foi corrompido devido as constantes modificações do formato para inserção do pacote de marcação de conteúdo e da inserção dos metadados no cabeçalho de comentários.
 
-O Qt Designer 5.4.2 foi utilizado para a construção da interface gráfica da aplicação que executa o formato especificado. O Player foi desenvolvido em C++ e, para execução do áudio, a rotina do framework SDL (Simple Directmedia Layer) versão 1.2.15 foi configurada e utilizada na aplicação.
+A biblioteca libvorvis foi utilizada como suporte ao uso da compressão de dados e integrada no Editor desenvolvido. A rotina é capzar de comprimir os dados contidos no formato e sua posterior recuperação.
+
+O Qt Designer 5.4.2 foi utilizado para a construção da interface gráfica da aplicação que executa o formato especificado. O Tocador foi desenvolvido em C++ e, para execução do áudio, a rotina do framework SDL (Simple Directmedia Layer) versão 1.2.15 foi configurada e integrada na aplicação. O QtSpeech foi utilizado como suporte ao uso de sintetizador de voz no Tocador e é capaz de utilizar a voz sintetizada do próprio sistema operacional. 
 
 \section{Proposta anterior}
 
-Como este trabalho é uma evolução do trabalho realizado por \cite{herbert}, a primeira coisa a ser feita foi entender a sua proposta de trabalho e, para isso, foi feito um estudo em cima de sua monografia. Esta proposta da evolução considerou os problemas levantados e traçou o objetivo de reproduzir o trabalho não originando o mesmo problema e então melhorar o trabalho anterior.
+A proposta de solução foi baseada no trabalho desempenhado por \cite{herbert}. Como ponto inicial ao desenvolvimento da solução tecnológica, a primeira coisa a ser feita foi entender a proposta de \cite{herbert} e, para isso, foi feito um estudo em cima de sua monografia. Conforme documentado, o sistema possuem três componentes, sendo eles: o Tocador, o Editor RAB e o Core como mostra a Figura \ref{components}.
+
+ \begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/components.eps}
+	\caption{Diagrama de Componentes.}
+	\label{components}
+\end{figure}
+
+O Core é a biliboteca estática comum e importante ao funcionamento do Tocador e do Editor. A Figura \ref{core} apresenta a biblioteca estática de forma mais detalhada. 
+
+ \begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/core.eps}
+	\caption{Diagrama de Classe do Core.}
+	\label{core}
+\end{figure}
+
+O diagrama de classes do Tocador está representado na Figura \ref{tocador}. O componente foi separado nas camadas Modelo, Visão e Controladora segundo o padrão MVC. O pacote core representa a biblioteca estática.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.4]{figuras/tocador.eps}
+	\caption{Diagrama de Classe do Tocador.}
+	\label{tocador}
+\end{figure}
+
+E, por fim, a Figura \ref{editor} mostra o diagrama de classe do Editor. A classe \textit{Main} utiliza os serviços das classes da biblioteca Core e implementa as funções de iteração com usuário através de linha de comando.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/editor.eps}
+	\caption{Diagrama de Classe do Editor RAB.}
+	\label{editor}
+\end{figure}
+
+A proposta de melhoria para o trabalho anterior considerou os problemas levantados e traçou, como objetivo, uma proposta inovadora sobre os aspectos sociais, econômicos, tecnológico e, principalmente, sobre a inclusão de pessoas que possuam alguma limitação para uso do sistema. Portanto, a solução trata da inclusão social dos deficientes visuais oferecendo a eles suporte ao ensino com baixo custo do uso da tecnologia.
 
 %apenas o software em si, mas também todo o processo de desenvolvimento. Foi levado em consideração os pontos fortes e fracos levantados pelo autor. O autor propôs, inicialmente, o uso de alguns artefatos do RUP e algumas práticas da metodologia ágil. No entanto, como o prazo era curto e a equipe de desenvolvimento era composta por apenas uma pessoa, o processo, de um modo geral, foi ad hoc. Isto explica o fato de ele não ter seguido o que o processo RUP especifica, a saber, a separação das atividades desenvolvidas em Concepção, Elaboração, Construção e Transição. Assim sendo, o processo utilizado também foi ad hoc.
 
@@ -50,7 +88,9 @@ No entanto, os dados ainda ficaram muito confusos e de difícil interpretação.
 
 É notável a diferença e a facilidade com que a ferramenta oggz informa sobre os pacotes contidos em um arquivo *.ogg. Após o comando é possível verificar os pacotes separadamente bem como sua informações tais como número do pacote, informações de grânulo, o ``tempo'' em que aquele pacote é lido, o seu tamanho, entre outras informações. Além das informações do pacote também é possível visualizar seu conteúdo e logo percebemos que os pacotes de número 0, 1 e 2 são os pacotes cabeçalhos. A identificação dos pacotes cabeçalhos pode ser percebida pois após o primeiro byte do pacote, os 6 bytes subsequentes contém a string ``vorbis'' onde cada byte representa uma letra.
 
-\section{Construção do codificador}
+\section{Desenvolvimento do Editor}
+
+\subsection{Construção do codificador}
 
 O estudo e o processo acima foi realizado para entender a estrutura do Ogg Vorbis e onde inserir os metadados e as marcações de conteúdo validando, assim, a possibilidade do uso do formato para a solução do problema. Para dar continuidade no estudo de viabilidade do formato Ogg Vorbis, foi desenvolvido um codificador em linguagem C. Como suporte, foram utilizadas as bibliotecas \textit{libogg}, \textit{libvorbis} e \textit{libvorbisenc}. O \textit{libvorbisenc} é responsável pela codificação. Para compilar o arquivo é necessário utilizar o seguinte comando: 
 	
@@ -65,11 +105,11 @@ Para garantir que o processo de codificação realmente funcionasse, foi utiliza
 
 %A decisão para uso deste formato foi de rápida aceitação pois, além de ser open source, ele possui licença BSD e seu formato faz uso de compressão de dados.
 
-\subsection{Inserção dos metadados}
+\subsubsection{Inserção dos metadados}
 
 Como fundamentado teoricamente no item mais acima, o arquivo *.ogg possui um pacote onde é possível inserir comentários. O \textit{comment packet} é o segundo pacote de cabeçalho da sequência de três que o Ogg Vorbis utiliza. Na Figura \ref{oggzdump} ele aparece como o pacote número 1. O próximo passo então foi inserir, comentários referentes ao arquivo de áudio. Logo, o pacote de comentários do formato Ogg Vorbis foi utilizado para inserção dos metadados e, comparando-o ao trabalho realizado \cite{herbert}, corresponde a estrutura META. Para este fim, o código desenvolvido em linguagem de programação C para a codificação foi modificado e este agora, além de pegar o conteúdo sonoro de um formato WAVE e o codificar em Ogg Vorbis com os dados comprimidos, ele também insere metadados no pacote. Para verificação da integridade do arquivo neste ponto do desenvolvimento, os mesmos passos utilizados no processo de codificação foram seguidos e as ferramentas \textit{oggz-dump} e \textit{sox} foram utilizadas.
 
-\subsection{Construção do pacote LGMK}
+\subsubsection{Construção do pacote LGMK}
 
 Referente a estrutura LGMK \cite{herbert}, o formato Ogg Vorbis não possui suporte e se fez necessário a alteração de sua estrutura. Isso deveria ser feito, obviamente, sem que o arquivo fosse corrompido possibilitando sua execução em players comuns. Para tal finalidade, um novo pacote foi definido. A Figura \ref{lgmk} mostra quais são os campos que compõe o pacote.
 
@@ -92,7 +132,7 @@ Os três \textit{header packets} definidos pelo Vorbis devem seguir a ordem disp
 
  No entanto, a decodificação não é corrompida por conta da forma que foi estruturado o pacote e do local onde foi inserido. O pacote LGMK foi construído como sendo um pacote de cabeçalho semelhante aos \textit{header packets} do \textit{codec} Vorbis. Ou seja, ele possui um byte para a identificação do tipo de pacote de cabeçalho. A diferença está nos seis bytes subsequentes, onde a string que representa a identificação do pacote é ``lgmks''. O pacote foi inserido direto no formato recipiente Ogg logo após o terceiro pacote de cabeçalho do Voribs. A Figura \ref{newformat} mostra como ficou organizado a estruturação do formato Ogg vorbis após inserção do pacote referente a marcação de conteúdo.
 
- \begin{figure}[ht]
+\begin{figure}[ht]
 	\centering
 		\includegraphics[keepaspectratio=true,scale=0.8]{figuras/newformat.eps}
 	\caption{Estrutura Ogg Vorbis com o pacote LGMK inserido.}
@@ -101,7 +141,7 @@ Os três \textit{header packets} definidos pelo Vorbis devem seguir a ordem disp
 
 Como foi posto após o cabeçalho de configuração do Ogg Vorbis, no processo de decodificação padrão, o pacote LGMK tentará ser codificado como pacote de áudio e então será ignorado. Portanto, ao executar um player o arquivo Ogg Vorbis gerado é tocado normalmente.
 
-\section{Construção do decodificador}
+\subsection{Construção do decodificador}
 
 Para o desenvolvimento do código referente ao processo de decodificação do arquivo *.ogg foram utilizadas as bibliotecas \textit{libvorbisfile}, \textit{libvorbis} e \textit{libogg}. A \textit{libvorbisfile} oferece o suporte necessário voltado para a decodificação do arquivo tornando o processo mais simples. Para compilar o arquivo é necessário utilizar o seguinte comando: 
 	
@@ -109,10 +149,93 @@ Para o desenvolvimento do código referente ao processo de decodificação do ar
 
 O código implementado decodifica os dados de cabeçalho e os imprime no terminal. Os dados PCM contidos do pacote de áudio são direcionados para um arquivo de saída.
 
-\subsection{Decodificação dos metadados}
+\subsubsection{Decodificação dos metadados}
 
 O metadados, uma vez codificados, precisavam ser decodificados e seu conteúdo recuperado em mémoria sem perda de dados. Para este fim, foi feito o uso da API \textit{libvorbisfile} onde foi possível recuperar os metadados corretamente.
 
-\subsection{Decodificação do pacote LGMK}
+\subsubsection{Decodificação do pacote LGMK}
 
 Como dito, o pacote é inserido diretamente no contêiner Ogg, ou seja, em nenhum momento é feito uso da estrutura vorbis para a inserção do pacote. Para o processo de decodificação do pacote LGMK, e por não fazer parte da estrutura Vorbis, a biblioteca \textit{libvorbisfile} não oferece nenhum suporte e foi desconsiderada no processo de decodificação a partir deste ponto do projeto. Para alcançar o objetivo de decodificação, o uso das bibliotecas \textit{libvorbis} e \textit{logg} foram ainda mais efetivos. A \textit{libvorbis} ainda foi utilizada para decodificar a estrutura Vorbis, porém de uma forma mais ``manual''. Para o pacote LGMK foi utilizada apenas a biblioteca \textit{logg}. Ao final, todo o arquivo foi decodificado corretamente.
+
+\subsection{Diagrama de Classe do Editor}
+
+Seguindo a arquitetura anterior, a Figura \ref{editorogg} apresenta o diagrama de classe para o Editor OGG desenvolvido conforme especificado nas sessões anteriores.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.5]{figuras/editorogg.eps}
+	\caption{Diagrama de classe do Editor OGG.}
+	\label{editorogg}
+\end{figure}
+
+Recorrendo aos serviços oferecidos pelo Core, a classe \textit{Main} é responsável por abrir um arquivo OGG, construir o pacote de marcação e gerar, como saída, o formato com o pacote em sua estrutura. A classe \textit{Ogg} é responsável por codificar e decodificar o formato. A construção do pacote de marcação está contido dentro da classe \textit{Lgmk}. Tanto o pacote \textit{Lgmk} quanto o pacote \textit{Ogg} foram postos no Core do sistema pois estes serão necessários também para a execução do formato no Tocador.
+
+\section{Desenvolvimento do Tocador}
+
+O tocador foi inicialmente desenvolvido por \cite{herbert} oferecendo suporte apenas aos formatos WAV e RAB. Desenvolvido em C++, o tocador faz uso do Qt para interfaceamento da apliacação e foi modificado originalmente para oferecer suporte ao novo formato comprimido especificado. A manutenção e evolução feita no Player está disseminada em boa parte do código visto que o Player passou a ser alimentado por este novo formato. O Tocador passou a fazer o uso da rotina libvorbis para descompressão dos dados e da API desenvolvida neste trabalho representada pelo Editor para a decodificação dos metadados e suas marcações. Referente a execução do áudio, para que fosse executado corretamente e os saltos fossem precisos, o cálculo para interpretação dos bytes do PCM do áudio decodificado foi reformulado. Na Figura \ref{layout} está representado a interface do Tocador proposta por \cite{herbert}:
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.4]{figuras/layout.eps}
+	\caption{Layout do Tocador estruturado pela ferramenta Qt Desginer.}
+	\label{layout}
+\end{figure}
+
+O Tocador é responsável por informar todos os dados contidos no formato. Os rótulos estáticos \textit{Title, Author, Language, Publisher, Address, Pages e Year} indicam as informações referentes aos metadados do pacote \textit{META} que, por sua vez, estão representados pelos \textit{labels} \textit{\textbf{TitleLabel, AuthorLabel, LanguageLabel, PublisherLabel, AddressLabel, PagesLabel e YearLabel}}. O rótulo \textit{Level} representa os dois possíveis níveis da marcação no que pode ser comparado aos capítulos e subcapítulos de um livro impresso tornando o acesso a informação mais preciso e coerente. \textit{Mark} e \textit{SubMark} são os rótulos responsáveis por informar a marcação e submarcação atual em que o áudio está contido. Ao final do layout tem-se uma barra para navegação manual do áudio e um visor digital que é atualizado constantemente mantendo a informação de tempo em segundos em que a execução do áudio se encontra.
+
+Para fins de acessibilidade para pessoas que possuam limitação visual, o Tocador passou por melhorias de inteface e novas funcionalidades foram inseridas na aplicação. A elicitação dos novos requisitos, a análise destes requisitos e suas escolhas estão dispostos a seguir.
+
+\subsection{Elicitação de Requisitos de Acessibilidade}
+
+%Para este fim, foi realizado um levantamento de softwares existentes que são acessíveis para cegos e pessoas com baixa visão.
+
+Para uma melhor precisão na escolha das funcionalidades que melhor contribuem para utilização de sistemas por pessoas com deficiência visual, 13 sistemas que contemplam este domínio foram analisados: \textit{Blind’s Music Player}, \textit{Dolphin SuperNova Access Suite}, \textit{JAWS}, \textit{LianeTTS}, \textit{MAGic}, \textit{MECDAISY}, \textit{NVDA Screen Reader}, \textit{Projeto DOSVOX}, \textit{Virtual Vision} e \textit{Windows-Eyes}. Segundo o processo proposto por (sommerville), os requisitos foram coletados, classificados e organizados em grupos coerentes. As funcionalidades comuns aos sistemas foram contados e priorizados considerando a funcionalidade de maior frequência como mais importantes:
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/features.eps}
+	\caption{Mapeamento das funcionalidades em comum.}
+	\label{features}
+\end{figure}
+
+A funcionalidade de suporte ao braille, apesar da frequência, não foi implementada por estar fora do escopo e propósito do trabalho aqui desenvolvido. As 7 funcionalidades de maior frequência foram implementadas, das quais são: sintetizador para leitura de tela, contraste de tela, sintetizador para informação de conteúdo, sintetizador para ajuda, destaque visual, ampliador de tela e anúncio automático de texto sob o mouse. Por intermédio destas \textit{features} o cego ou a pessoa com baixa visão consegue acessar todas as informações referente ao \textit{audiobook} que está sendo executado além de oferecer suporte de ajuda para utilização do Tocador.
+
+\subsection{User Stories}
+
+As \textit{features} elicitadas estão representadas em \textit{User Stories} e disponíveis no \hyperref[userstories]{Apêndice A}. Os Critérios de Aceitação para cada \textit{User Story} estão disponíveis no \hyperref[criterios]{Apêndice B}.
+
+\subsection{Codificação}
+
+Após a elicitação, análise e definição dos requisitos o passo seguinte foi a implementação destes no sistema. Os três recursos básicos necessários para inserção das \textit{features} de acessibilidade estão descritos nas sessões seguintes. A descrição de cada funcionalidade e o recurso e suporte que elas dispõem estão detalhados na sessão \hyperref[cap4]{Resultados Alcançados}.
+
+\subsubsection{Sintetizador de Voz}
+
+Após a elicitação dos requisitos percebeu-se a necessidade do uso de recurso de voz para a aplicação. Para garantir que o recurso de voz funcionasse e estivesse bem integrado a aplicação foi utilizado a API QtSpeech, pois a ferramenta Qt já faz suporte ao desenvolvimento do Tocador. No entanto, foi utilizado uma versão modificada por Taodyne da biblioteca QtSpeech. Para uso do \textit{tao-qt-speech} o \href{https://github.com/c3d/tao-qt-speech.git}{código fonte} acessível disponibilizado no github foi baixado e os comandos \textit{make} e \textit{make install} foram executados, nesta ordem, para instalação. Ela foi selecionada por fazer integração do suporte QtSpeech ao sintetizador de voz do próprio sistema em que a aplicação está sendo executada, sejam eles Mac OS X, Linux ou Windows.
+
+
+\subsubsection{Detectando Elementos de Interface}\label{detect}
+
+Para a correta implementação dos requisitos elicitados fez-se necessário a detectação e a diferenciação dos elementos dispostos na interface. Dependendo do elemento que estiver sob o mouse, o texto será ampliado ou os botões disponíveis serão falados e destacados visualmente. Para tal recurso o \textit{EventFilter} é capaz de filtrar os objetos que estão sob o mouse fazendo diferenciação entre eles. O \textit{EventFilter} deve ser instalado em cada objeto através do método \textit{QObject::installEventFilter()}. Após isso, o método \textit{eventFilter(QObject *object, QEvent *event)} fica responsável por escutar os objetos. Esta funcionalidade foi implementada na classe Ui\_meta na camada \textit{View} do Tocador como mostrado na Figura \ref{diagram}.
+
+\subsubsection{Recurso de Teclado}
+
+A definição das teclas funcionais para o Tocador também foram elicitadas a partir do reuso de requisitos na qual os requisitos de layout do teclado dos softwares citados foram analisados. Observou-se que não existe teclas específicas para cada funcionalidade de acessibilidade a pessoas com deficiência visual. No entanto, constatou-se que a tecla definida para dada funcionalidade é representada pela primeira letra do nome daquela funcionalidade, quando disponível. A fim de detectar quando uma tecla é pressionada e atribuir-lhe uma ação, os serviços das classes \textit{QKeyEvent} e \textit{QShortcut} do Qt foram utilizados por oferecerem o suporte necessário. A primeira coisa feita foi obter um referência de uma tecla por intermédio da classe \textit{QKeySequence} que é responsável por encapsular uma tecla ou uma sequência delas para serem usadas com atalho no Tocador. Em seguida, a classe \textit{QShortcut} cria um atalho que associa a tecla ao Tocador. Este atalho, por sua vez, foi conectado a um dado método que será executado no momento em que a tecla for pressionada. Estes passos foram implementados na controladora Player de acordo com a Figura \ref{diagram}.
+
+O método \textit{setControl(SoundCTRL *control)} habilita as teclas e as associa aos métodos da classe \textit{SoundCTRL} da qual é responsável pelo controle do Tocador.
+
+\subsection{Diagrama de Classe do Tocador}
+
+Para a inserção dos requisitos de acessibilidade, dois métodos foram criados na controladora do Tocador. O primeiro deles é o \textit{setKeyboardControl()}. Este método é responsável por criar os atalhos de teclado que executará os métodos de controle de execução do Tocador da classe SoundCTRL. O segundo método é o \textit{setAccessibilitySupport()} cuja função é criar atalhos de teclado para os recursos visuais e do sintetizador de voz que estão definidos na classe Accessiblity. A diagrama de classe está representado na Figura \ref{diagram}.
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[keepaspectratio=true,scale=0.3]{figuras/diagram.eps}
+	\caption{Diagrama de Classe do Tocador com os recursos de acessibilidade.}
+	\label{diagram}
+\end{figure}
+
+Para detecção do movimento do mouse e distinção entre os elementos sob ele os métodos \textit{eventFilter()} e \textit{setEventFilter()} foram implementados na classe Ui\_Meta conforme dito na sessão \ref{detect}
+
+%---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+%Para que o Tocador tivesse uma resposta significativa à pessoa com deficiência visual, 
