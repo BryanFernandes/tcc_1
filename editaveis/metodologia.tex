@@ -236,6 +236,70 @@ Para a inserção dos requisitos de acessibilidade, dois métodos foram criados 
 
 Para detecção do movimento do mouse e distinção entre os elementos sob ele os métodos \textit{eventFilter()} e \textit{setEventFilter()} foram implementados na classe Ui\_Meta conforme dito na sessão \ref{detect}
 
-%---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%\subsection{Engenharia de Produto}
 
-%Para que o Tocador tivesse uma resposta significativa à pessoa com deficiência visual, 
+%Para tornar o ambiente automatizado e a evolução do Tocador colaborativo mantendo continuamente a integridade do ambiente de desenvolvimento e do software, quatro técnicas foram utilizadas: análise estática de código, cobertura de teste, ambiente automatizado e integração contínua. Estes métodos de desenvolvimento que compõe a Engenharia do Produto estão descritos nas seções seguintes.
+
+\subsection{Automação da Infraestrutura}
+
+%Conceituar automação e falar sobre suas metodoligas: integração contínua, entrega contínua e implantação contínua
+
+Tradicionalmente, o desenvolvimento de software é marcado por uma série de processos manuais. Estes processos estão propensos a erros humanos cujo resultado ocasiona o aumento do custo de desenvolvimento e entrega da solução bem como a baixa qualidade do software entregue em decorrência destes erros. Ainda ocorre que o desenvolvimento e entrega de software flui em ambiente colaborativo entre desenvolvedores e também com o time operacional. Acontece que a comunicação e validação podem falhar em alguma parte do processo \cite{braga2015devops}. 
+
+Diante do exposto e tendo em vista a automação do ambiente de desenvolvimento, teste e entrega, esta seção apresenta conceitos, ferramentas e técnicas que fornecem uma automatização que visa gerar confiabilidade, estabilidade e agilidade durante o processo, esta seção descreve o processo de Entrega Contínua assim como o detalhamento de seus subprocessos integração e implatanção contínua, pipeline de implantação e ferramental utilizado.
+
+
+ % (WOONTTON, 2013).
+
+% Frente a complexidade cada vez maior dos sistemas, integração a outros serviços e a pressão para se entregar um software que gere valor para o cliente de forma mais rápida e com qualidade, 
+
+\subsubsection{Integração Contínua}
+
+Com surgimento na metodologia ágil XP, o termo está difundido em diversas metodologias e se define na prática na entrega do código alterado e/ou desenvolvido na mesma frequência que as funcionalidades são desenvolvidas. Para tal, a integração contínua ocorre diversas vezes ao dia e seu objetivo principal consiste em verificar se as alterações realizadas no projeto não produziram erros no projeto já existente \cite{beck2001planning}. Sendo assim, a Integração Contínua permite a integração das frequentes alterações parciais ao código principal por um processo automatizado de build e testes com garantias e, por fim, notificações para conhecimento do time de desenvolvimento sobre a operação.
+
+\subsubsection{Entrega Contínua}
+
+Entrega contínua é uma prática que garante a entrega de software da equipe de desenvolvedores para o ambiente de produção em um processo confiável, previsível, visível e o mais automatizado possível, com riscos quantificáveis e bem entendidos \cite{humble2010continuous}. A prática automatiza todo o sistema de entrega (build, implantação, teste e liberação) reduzindo o tempo e os riscos associados à entrega de novas versões de softwares.
+
+\subsection{Implantação Contínua}
+
+Para fazer a Implantação Contínua, deve-se estar fazendo a Entrega Contínua. A Entrega Contínua significa que você é capaz de realizar implantações frequentes, mas pode optar por não fazê-lo. Portanto, a Implantação Contínua é o estágio final da entrega contínua por onde todas as alterações que passam pelo pipeline são automaticamente colocadas em produção \cite{humble2010continuous}.
+
+\subsubsection{Pipeline de Implantação}
+
+%conceituar pipeline e apresentar estágios para o contexto deste trabalho
+De modo geral, a implementação do pipeline de implatancão tem por finalidade detectar quaisquer alterações que levem a problemas na produção, sendo uma manifestação automatizada do processo de levar o software de controle de versão até os usuários. Em outras palavras, o pipeline é contruído em estágios que evidenciam as mudanças de construção do software que passam por um processo de compilação, por estágios de testes e implantação. O pipeline de implantação deve permitir a colaboração entre os vários grupos envolvidos no fornecimento de software e fornecer visibilidade a todos sobre o fluxo de alterações no sistema fornecendo assim \textit{feedback} o mais rápido possível \cite{humble2010continuous}.
+
+Normalmente, o primeiro estágio de um pipeline realiza uma compilação que fornecerá um binário para os estágios seguintes. Os estágios posteriores podem incluir verificações manuais ou automáticas, como quaisquer testes que podem ser ou não ser automtatizados. A implantação na produção é geralmente o estágio final de um pipeline \cite{humble2010continuous}. Partindo deste pressuposto, à medida que o software passa em cada estágio ele vai se tornando mais confiável e mais próximo de ir à produção. Os testes que falham em algum estágio descarta a versão candidata e o processo de \textit{feedback} a respeito da falha é obtido o mais rápido possível.
+
+Assumindo o processo básico de um pipeline de implantação proposto por Humble Jez, Farley David \cite{humble2010continuous} com pequenas modificações para adequação ao escopo deste trabalho, abaixo está descrito os estágios que compõe o pipeline de implantação a ser utilizado no Tocador. O processo inicia quando:
+
+\begin{enumerate}
+	\item Controle de versão
+	\item Análise estática de código
+	\item Gerar executável modo teste (automatização de builds de teste)
+	\item Executar testes unitários (automatização de testes)
+	\item Gerar executável modo debug (automatização de builds executáveis)
+	\item Implantação (automatização de deploy)
+\end{enumerate}
+
+
+\subsubsection{Ferramental}
+
+% \subsubsection{Análise Estática de Código}
+
+% A ferramenta Mezuro foi utilizada para garantir uma melhor qualidade de código e prevenção de potenciais \textit{bugs}. Ele é capaz de colher as seguintes métricas: \textit{Afferent Connections per Class (used to calculate COF - Coupling Factor), Average Cyclomatic Complexity per Method, Average Method Lines of Code, Average Number of Parameters per Method, Depth of Inheritance Tree, Number of Methods, Number of Public Attributes} e \textit{Structural Complexity}.
+
+% \subsubsection{Ambiente Automatizado}
+
+% Dada a complexidade para a montagem do ambiente de desenvolvimento viu-se a necessidade de automatiza-lo. Dessa forma, o próprio sistema operacional será o responsável por construir um ambiente capaz de compilar, executar e testar o Tocador. Com suporte aos sistemas operacionais OS X e Linux, o Vagrant foi a ferramenta escolhida para este fim. A partir de um script, ele é capaz de criar e recriar ambientes em qualquer lugar de forma simples e descomplicada. Para isso, o Vagrant faz uso das soluções de virtualização mais comuns como o Virtualbox que será utilizado neste trabalho.
+
+% \subsubsection{Cobertura de Teste}
+
+% O Qt é um framework multiplataforma que possui deversos módulos para desenvolvimento de software. Como alguns módulos do Qt foram utilizados para a construção do Tocador e de sua interface gráfica, tais como QtCore, QtGui, QtWidgets e QtDesigner, para a cobertura de testes, o módulo QtTest foi selecionado para a implementação dos testes unitários.N
+
+% \subsubsection{Integração Contínua}
+
+% Travis
+
+%---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
