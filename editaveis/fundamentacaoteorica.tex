@@ -307,32 +307,34 @@ Para obter arquivos cada vez menores e com uma qualidade constante, o Vorbis uti
 
 \subsubsection{Algortimo de compressão}
 
-Os métodos usados para a compressão de áudio geralemente pertencem a duas categorias: métodos que trabalham no domínio do tempo e métodos que trabalham no domínio da frequência. Todos os formatos conhecidos que trabalham no domínio da frequência usa a transformada discreta do cosseno modificada. O \textbf{MDCT} (\textit{Modified Discrete Cosine Transform}) realiza a tranformação para o domínio da frequência a partir do domínio do tempo. O \textbf{\textit{window shape}} que contém amostras PCM com duas variações de comprimentos especificados em 2048 ou 512 amostras. O Vorbis usa o MDCT para aplicar transformação com janelas sobrepostas \cite{vorbis}. A função MDCT é dada por:
+Os métodos usados para a compressão de áudio geralemente pertencem a duas categorias: métodos que trabalham no domínio do tempo e métodos que trabalham no domínio da frequência. Todos os formatos conhecidos que trabalham no domínio da frequência usa a transformada discreta do cosseno modificada. O \textbf{MDCT} (\textit{Modified Discrete Cosine Transform}) realiza a tranformação para o domínio da frequência a partir do domínio do tempo. O \textbf{\textit{window shape}} que contém amostras PCM com duas variações de comprimentos especificados em 2048 ou 512 amostras. O Vorbis usa o MDCT para aplicar transformação com janelas sobrepostas \cite{vorbis}. 
 
-\begin{equation}
-X(k) = \sum_{n=0}^{N-1} x(n) \cos \left [ \left ( n + \frac{M+1}{2} \right ) + \left ( k+\frac{1}{2} \right ) \frac{\pi}{M} \right ]
-\end{equation}
+% A função MDCT é dada por:
 
-, onde N = 2M é o tamanho da janela, M é o número do coeficiente de transformação e o k variando de 0, 1, ..., M - 1 \cite{mdct}. A inversa do MDCT (a saber, IMDCT) é dada por 
+% \begin{equation}
+% X(k) = \sum_{n=0}^{N-1} x(n) \cos \left [ \left ( n + \frac{M+1}{2} \right ) + \left ( k+\frac{1}{2} \right ) \frac{\pi}{M} \right ]
+% \end{equation}
 
-\begin{equation}
-x(k) = \sum_{n=0}^{M-1} X(n) \cos \left [ \left ( n + \frac{M+1}{2} \right ) + \left ( k+\frac{1}{2} \right ) \frac{\pi}{M} \right ]
-\end{equation}
+% , onde N = 2M é o tamanho da janela, M é o número do coeficiente de transformação e o k variando de 0, 1, ..., M - 1 \cite{mdct}. A inversa do MDCT (a saber, IMDCT) é dada por 
 
-, em que o k varia de 0, 1, ..., N - 1 \cite{mdct}. Como dito anteriormente, cada janela pode ter um de dois tamanhos possíveis indicados no cabeçalho da \textit{stream}. Os tamanhos admissíveis (em amostras) são todas dadas em potência de 2 entre 64 e 8192. Todas as janelas de Vorbis utilizam a função de inclinação:
+% \begin{equation}
+% x(k) = \sum_{n=0}^{M-1} X(n) \cos \left [ \left ( n + \frac{M+1}{2} \right ) + \left ( k+\frac{1}{2} \right ) \frac{\pi}{M} \right ]
+% \end{equation}
 
-\begin{equation}
-y = \sin \left ( 0.5 * \pi\sin^{2}\left ( \frac{x+0.5}{n}*\pi \right ) \right )
-\end{equation}
+% , em que o k varia de 0, 1, ..., N - 1 \cite{mdct}. Como dito anteriormente, cada janela pode ter um de dois tamanhos possíveis indicados no cabeçalho da \textit{stream}. Os tamanhos admissíveis (em amostras) são todas dadas em potência de 2 entre 64 e 8192. Todas as janelas de Vorbis utilizam a função de inclinação:
 
-, onde n indica o tamanho das amostras \cite{vorbis}. Após a transformação de domínio de frequência do sinal, o próximo passo é realizar uma análise pelo modelo psicoacústico onde a parte inaudível de um \textit{spectrum} pela audição humanda é removido. O modelo \textbf{psicoacústico} baseia-se no limite absoluto da audiência humana e, assim, indica quais frequências podem ser ``sacrificadas'' durante a compressão sem uma grande perda audível de qualidade. Em seguida, o vetor \textbf{\textit{floor}} é gerado para cada um dos canais e é usado para obter uma aproximação de baixa resolução do \textit{spectrum} de áudio para o canal fornecido no \textit{frame} atual. O \textit{floor} obtido será então subtraído do \textit{spectrum} gerando os \textbf{\textit{residues}}. Os vetores de resíduos de ambos os canais são transformados da representação cartesiana para a representação polar e esse processo recebe o nome de \textbf{\textit{channel coupling}} e, a partir disso, é feita uma compressão dos resíduos com \textbf{VQ} (Vector Quantization). Posteriormente, os resultados são codificados por meio do algorimto de \textbf{Huffman} para eliminar ainda mais a redundância. A saída final do processo gera o pacote Vorbis. Estes pacotes, por fim, são encapsulados em um recipiente Ogg universal \cite{algoritmocompressao} e \cite{vorbis}. A firgura \ref{algorithm} é um diagrama que representa todo o processo descrito nesta seção.
+% \begin{equation}
+% y = \sin \left ( 0.5 * \pi\sin^{2}\left ( \frac{x+0.5}{n}*\pi \right ) \right )
+% \end{equation}
 
-\begin{figure}[ht]
-	\centering
-		\includegraphics[keepaspectratio=true,scale=0.8]{figuras/algorithm.eps}
-	\caption{Diagrama do algoritmo de compressão da Vorbis I \cite{algoritmocompressao}.}
-	\label{algorithm}
-\end{figure}
+% , onde n indica o tamanho das amostras \cite{vorbis}. Após a transformação de domínio de frequência do sinal, o próximo passo é realizar uma análise pelo modelo psicoacústico onde a parte inaudível de um \textit{spectrum} pela audição humanda é removido. O modelo \textbf{psicoacústico} baseia-se no limite absoluto da audiência humana e, assim, indica quais frequências podem ser ``sacrificadas'' durante a compressão sem uma grande perda audível de qualidade. Em seguida, o vetor \textbf{\textit{floor}} é gerado para cada um dos canais e é usado para obter uma aproximação de baixa resolução do \textit{spectrum} de áudio para o canal fornecido no \textit{frame} atual. O \textit{floor} obtido será então subtraído do \textit{spectrum} gerando os \textbf{\textit{residues}}. Os vetores de resíduos de ambos os canais são transformados da representação cartesiana para a representação polar e esse processo recebe o nome de \textbf{\textit{channel coupling}} e, a partir disso, é feita uma compressão dos resíduos com \textbf{VQ} (Vector Quantization). Posteriormente, os resultados são codificados por meio do algorimto de \textbf{Huffman} para eliminar ainda mais a redundância. A saída final do processo gera o pacote Vorbis. Estes pacotes, por fim, são encapsulados em um recipiente Ogg universal \cite{algoritmocompressao} e \cite{vorbis}. A firgura \ref{algorithm} é um diagrama que representa todo o processo descrito nesta seção.
+
+% \begin{figure}[ht]
+% 	\centering
+% 		\includegraphics[keepaspectratio=true,scale=0.8]{figuras/algorithm.eps}
+% 	\caption{Diagrama do algoritmo de compressão da Vorbis I \cite{algoritmocompressao}.}
+% 	\label{algorithm}
+% \end{figure}
 
 \subsubsection{Estruturação}
 
